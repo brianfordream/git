@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js – The HTML Presentation Framework</title>
+		<title>Learning Git</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -15,11 +15,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
+<style type="text/css">
+        #mi2_videowrap {
+		display: none;
+		overflow: hidden;
+        text-align:center;
+        margin-left:auto;
+        margin-right:auto;
+	}
+	#mi2_videowrap .close {
+	}
+    </style>
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -36,92 +46,279 @@
 
 	<body>
 
-		<div class="reveal">
+		<div class="reveal convex">
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h1>Git</h1>
+					<h3>A Distributed Revision Control System</h3>
+					<h5>杨阳</h5>
+					<h5>度假事业部搜索与频道</h5>
 				</section>
 
-				<section>
-					<h2>Hello There</h2>
-					<p>
-						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
-					</p>
-				</section>
-
-				<!-- Example of nested vertical slides -->
+                <!-- 版本控制以及Git介绍 -->
 				<section>
 					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<a href="#" class="navigate-down">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
+						<h2>What is Version Control?</h2>
+                        <img src="image/what-is-vcs.png" width="800px">
+						<aside class="notes">
+                            版本控制是一种记录文件内容变化，以便将来查阅特定版本修订情况的系统．它类似于一个文件数据库，可以在任意时间保存文件的快照，快照记录了文件变更的过程，在使用时可以将文件方便的还原到某一快照．
+                            常见的版本控制分为集中式的版本控制系统，例如svn,分布式的版本控制系统，例如git.
+						</aside>
 					</section>
+                    <section>
+                        <h2>集中式版本控制</h2>
+                        <img src="http://bigemployee.com/wp-content/uploads/2012/10/git-version-control.png" >
+                        <aside class="notes">
+                            集中式版本控制系统将完整的版本记录都保存在中央服务器上，使用者只获取到某个版本文件的拷贝,进行数据操作时需要与中央服务器通讯交换数据．集中式的缺点就是
+                            单点故障，当服务器出现问题时，用户无法与服务器通讯提交更新，如果是磁盘损坏，更有可能丢失数据，最大的限制还是大部分操作都需要进行联网．
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>分布式版本控制</h2>
+                        <img src="https://git-scm.com/book/en/v2/book/01-introduction/images/distributed.png" height="500px">
+                        <aside class="notes">
+                            分布式版本控制系统中，客户端不只提取某一版本的文件快照，而是将整个代码仓库完整的镜像下来，这样，当中央服务器发生故障时，
+                            使用任意一个镜像都可以恢复服务器.本地仓库包含了项目完整地提交历史，使用者可以在本地完成版本和分支操作，并可以提交代码到本地
+                            仓库，当有网络时再提交给中央服务器．
+                        </aside>
+                    </section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+                        <img src="https://git-scm.com/images/logo@2x.png" >
+                        <br />
+						<h2>What is Git</h2>
+						<aside class="notes">
+                            Git是目前最常用的分布式版本控制系统，由Linus设计用作Linux内核代码的管理．Git操作效率非常高，简单的移动指针就可以指向不同的分支和提交，
+                            Git鼓励使用分支开发代码，常用命令只有十几个，使用起来非常顺手．
+                            下面对比下svn与Git的区别
+						</aside>
 					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<a href="#/2">
-							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(180deg); -webkit-transform: rotate(180deg);">
-						</a>
-					</section>
+                    <section>
+                        SVN存储每个文件的变化
+                        <img src="https://git-scm.com/book/en/v2/book/01-introduction/images/deltas.png" >
+                    </section>
+                    <section>
+                        Git存储完整的文件快照
+                        <img src="https://git-scm.com/book/en/v2/book/01-introduction/images/snapshots.png" >
+                    </section>
+                    <section>
+                        <h2>Git VS SVN</h2>
+                        <p class="fragment visible" data-fragment-index="0">Git保存的是快照，SVN保存的是文件的变化.</p>
+                        <p class="fragment visible" data-fragment-index="1">Git几乎所有的操作都可以在本地完成，SVN需要与服务器通讯以获得老版本的文件．</p>
+                        <p class="fragment visible" data-fragment-index="2">Git对文件内容使用SHA-1 hash生成提交版本号，可以保证文件内容的完整性，而SVN使用递增的编号作为版本号．</p>
+                        <aside class="notes">
+                            Git保存的是快照，SVN保存的是文件的变化.
+                            Git几乎所有的操作都可以在本地完成，SVN需要与服务器通讯以获得老版本的文件．
+                            Git对文件内容使用SHA-1 hash生成提交版本号，可以保证文件内容的完整性，而SVN使用递增的编号作为版本号．
+                        </aside>
+                    </section>
 				</section>
 
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Touch Optimized</h2>
-					<p>
-						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
-					</p>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						Write content using inline or external Markdown.
-						Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  Write content using inline or external Markdown.
-						  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
+                <!--Git工作流 -->
+                <section>
+                    <section>
+                        <h2>Git工作流</h2>
+                    </section>
+                    <section>
+                        <h2>git的三种状态</h2>
+                        <table border="0">
+                            <tr>
+                                <td class="fragment visible" data-fragment-index="0">已修改(modified)</td>
+                                <td class="fragment visible" data-fragment-index="5">→</td>
+                                <td class="fragment visible" data-fragment-index="6">工作区</td>
+                            </tr>
+                            <tr>
+                                <td class="fragment visible" data-fragment-index="1" align="center">↓</td>
+                                <td class="fragment visible" data-fragment-index="5"></td>
+                                <td class="fragment visible" data-fragment-index="8" align="center">↓</td>
+                            </tr>
+                            <tr>
+                                <td class="fragment visible" data-fragment-index="2">已暂存(staged)</td>
+                                <td class="fragment visible" data-fragment-index="7">→</td>
+                                <td class="fragment visible" data-fragment-index="8">暂存区</td>
+                            </tr>
+                            <tr>
+                                <td class="fragment visible" data-fragment-index="3" align="center">↓</td>
+                                <td class="fragment visible" data-fragment-index="7"></td>
+                                <td class="fragment visible" data-fragment-index="10" align="center">↓</td>
+                            </tr>
+                            <tr>
+                                <td class="fragment visible" data-fragment-index="4">已修改(modified)</td>
+                                <td class="fragment visible" data-fragment-index="9">→</td>
+                                <td class="fragment visible" data-fragment-index="10">仓库</td>
+                            </tr>
+                        </table>
+                        <aside class="notes">
+                            已修改表示修改了文件，但是还没有打算提交．
+                            已暂存表示将已修改的文件包含到下次提交的快照中．
+                            已提交表示文件已经存在于本地仓库中，可以在分支上查看到提交历史．
+                            在Git项目中与文件的三种状态对应的是三个文件区域的概念：工作区,暂存区以及Git仓库。
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>git的三个区域</h2>
+                        <img src="https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png">
+                        <aside class="notes">
+                            工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。
+                            暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作“索引”，不过一般说法还是叫暂存区域。
+                            Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
+                            基本的 Git 工作流程如下：
+                            在工作目录中修改文件。
+                            暂存文件，将文件的快照放入暂存区域。
+                            提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。
+                            如果 Git 目录中保存着的特定版本文件，就属于已提交状态。 如果作了修改并已放入暂存区域，就属于已暂存状态。 如果自上次取出后，作了修改但还没有放到暂存区域，就是已修改状态
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>分支开发</h2>
+                        <img src="https://git-scm.com/book/en/v2/book/03-git-branching/images/basic-merging-2.png" >
+                        <aside class="notes">
+                            在麦当劳点餐后，有人做汉堡，有人炸薯条，有人接可乐，最后，汇总到了前台,这是分支开发的一个现实缩影.当系统需要多人分工协作时，如果在一个
+                            分支上工作，就需要频繁的合并，相互干扰，引入分支后，每个人在自己的分支上工作，在工作完成后进行合并操作.
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>一般开发流程</h2>
+                        <p class="fragment visible" data-fragment-index="0">创建仓库/从远程仓库复制</p>
+                        <p class="fragment visible" data-fragment-index="1">创建特性分支</p>
+                        <p class="fragment visible" data-fragment-index="2">创建/修改文件</p>
+                        <p class="fragment visible" data-fragment-index="3">工作区提交文件到暂存区</p>
+                        <p class="fragment visible" data-fragment-index="4">暂存区提交文件到本地仓库</p>
+                        <p class="fragment visible" data-fragment-index="5">切换到主分支</p>
+                        <p class="fragment visible" data-fragment-index="6">合并特性分支到主干分支</p>
+                        <p class="fragment visible" data-fragment-index="7">推送本地仓库到远程仓库</p>
+                    </section>
+                </section>
+                <!-- git 常用命令 -->
+                <section>
+                    <section>
+                        <h2>Git常用命令</h2>
+                        <table>
+                            <tr>
+                               <td><b>Basic</b></td>
+                               <td>init</td>
+                               <td>clone</td>
+                               <td>status</td>
+                               <td>log</td>
+                               <td>reflog</td>
+                               <td>remote</td>
+                               <td>config</td>
+                            </tr>
+                            <tr>
+                               <td><b>File</b></td>
+                               <td>fetch</td>
+                               <td>pull</td>
+                               <td>add</td>
+                               <td>commit</td>
+                               <td>push</td>
+                               <td>rm</td>
+                               <td>stash</td>
+                            </tr>
+                            <tr>
+                               <td><b>Branch</b></th>
+                               <td>branch</td>
+                               <td>checkout</td>
+                               <td>merge</td>
+                               <td>diff</td>
+                               <td>reset</td>
+                               <td>revert</td>
+                            </tr>
+                        </table>
+                    </section>
+                    <section>
+                        <h2>git init</h2>
+                        创建一个空的本地仓库或者重新初始化一个已经存在的仓库
+                        <h3><a href="video/init.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <p class="fragment visible" data-fragment-index="0"><img src="image/init1.png"></p>
+                        <p class="fragment visible" data-fragment-index="1">↓ git init</p>
+                        <p class="fragment visible" data-fragment-index="2"><img src="image/init2.png"></p>
+                    </section>
+                    <section>
+                        <h2>git clone</h2>
+                        <p>克隆远程仓库到一个新的目录</p>
+                        <h3><a href="video/clone.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git status</h2>
+                        <p>显示工作区域的状态</p>
+                        <h3><a href="video/status.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git log</h2>
+                        <p>记录提交日志</p>
+                        <h3><a href="video/log.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git reflog</h2>
+                        <p>记录所有分支的所有操作</p>
+                        <h3><a href="video/reflog.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git remote</h2>
+                        <p>管理相关的远程仓库</p>
+                        <h3><a href="video/remote.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git config</h2>
+                        <p>修改Git配置文件</p>
+                        <h3><a href="video/config.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git fetch</h2>
+                        <p>拉取远程仓库到本地仓库</p>
+                        <h3><a href="video/fetch.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>merge</h2>
+                        <p>合并分支</p>
+                        <h3><a href="video/merge.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git pull</h2>
+                        <p>拉取远程仓库到本地仓库并合并到本地分支(git fetch + git merge)</p>
+                        <h3><a href="/video/pull.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h3>diff</h3>
+                        <p>显示不同提交，不同工作区域，不同分支之间的差别</p>
+                        <h3>git add</h3>
+                        <p>工作区提交到暂存区</p>
+                        <h3>git commit</h3>
+                        <p>暂存区提交到本地仓库</p>
+                        <h3>git push</h3>
+                        <p>将本地仓库的内容推送到远程仓库</p>
+                        <h3><a href="/video/acpd.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git rm</h2>
+                        <p>将文件从暂存区或者工作区中移除(--cached)</p>
+                        <h3><a href="video/rm.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git stash</h2>
+                        <p>暂存工作区内容并清理工作区</p>
+                        <h3><a href="video/stash.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>branch</h2>
+                        <p>管理分支</p>
+                        <h3><a href="video/branch.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>checkout</h2>
+                        <p>检出分支或撤销文件</p>
+                        <h3><a href="video/checkout.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>reset</h2>
+                        <p>重置HEAD到指定的状态</p>
+                        <h2>revert</h2>
+                        <p>撤销一些已经存在的提交</p>
+                    </section>
+                </section>
 				<section>
 					<section id="fragments">
 						<h2>Fragments</h2>
@@ -243,74 +440,6 @@ function linkify( selector ) {
 					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
 				</section>
 
-				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
 
 				<section>
 					<h2>Speaker View</h2>
@@ -327,46 +456,6 @@ function linkify( selector ) {
 					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
 					<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
-
 				<section style="text-align: left;">
 					<h1>THE END</h1>
 					<p>
