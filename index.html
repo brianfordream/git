@@ -72,7 +72,7 @@
                         <img src="http://bigemployee.com/wp-content/uploads/2012/10/git-version-control.png" >
                         <aside class="notes">
                             集中式版本控制系统将完整的版本记录都保存在中央服务器上，使用者只获取到某个版本文件的拷贝,进行数据操作时需要与中央服务器通讯交换数据．集中式的缺点就是
-                            单点故障，当服务器出现问题时，用户无法与服务器通讯提交更新，如果是磁盘损坏，更有可能丢失数据，最大的限制还是大部分操作都需要进行联网．
+                            单点故障，当服务器出现问题时，用户无法与服务器通讯交换数据，如果是磁盘损坏，更有可能丢失数据
                         </aside>
                     </section>
                     <section>
@@ -81,7 +81,7 @@
                         <aside class="notes">
                             分布式版本控制系统中，客户端不只提取某一版本的文件快照，而是将整个代码仓库完整的镜像下来，这样，当中央服务器发生故障时，
                             使用任意一个镜像都可以恢复服务器.本地仓库包含了项目完整地提交历史，使用者可以在本地完成版本和分支操作，并可以提交代码到本地
-                            仓库，当有网络时再提交给中央服务器．
+                            仓库，当需要交换代码时再提交给中央服务器．
                         </aside>
                     </section>
 					<section>
@@ -89,7 +89,7 @@
                         <br />
 						<h2>What is Git</h2>
 						<aside class="notes">
-                            Git是目前最常用的分布式版本控制系统，由Linus设计用作Linux内核代码的管理．Git操作效率非常高，简单的移动指针就可以指向不同的分支和提交，
+                            Git是目前最常用的分布式版本控制系统，最初用作Linux内核代码的维护．Git操作效率非常高，通过移动指针就指向不同的分支提交，
                             Git鼓励使用分支开发代码，常用命令只有十几个，使用起来非常顺手．
                             下面对比下svn与Git的区别
 						</aside>
@@ -105,11 +105,11 @@
                     <section>
                         <h2>Git VS SVN</h2>
                         <p class="fragment visible" data-fragment-index="0">Git保存的是快照，SVN保存的是文件的变化.</p>
-                        <p class="fragment visible" data-fragment-index="1">Git几乎所有的操作都可以在本地完成，SVN需要与服务器通讯以获得老版本的文件．</p>
+                        <p class="fragment visible" data-fragment-index="1">Git几乎所有的操作都可以在本地完成，SVN需要与服务器通讯以获得其他版本的文件．</p>
                         <p class="fragment visible" data-fragment-index="2">Git对文件内容使用SHA-1 hash生成提交版本号，可以保证文件内容的完整性，而SVN使用递增的编号作为版本号．</p>
                         <aside class="notes">
                             Git保存的是快照，SVN保存的是文件的变化.
-                            Git几乎所有的操作都可以在本地完成，SVN需要与服务器通讯以获得老版本的文件．
+                            Git几乎所有的操作都可以在本地完成，SVN需要与服务器通讯以获得其他版本的文件．
                             Git对文件内容使用SHA-1 hash生成提交版本号，可以保证文件内容的完整性，而SVN使用递增的编号作为版本号．
                         </aside>
                     </section>
@@ -170,14 +170,9 @@
                         <h2>git的三个区域</h2>
                         <img src="https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png">
                         <aside class="notes">
-                            工作目录是对项目的某个版本独立提取出来的内容。 这些从 Git 仓库的压缩数据库中提取出来的文件，放在磁盘上供你使用或修改。
-                            暂存区域是一个文件，保存了下次将提交的文件列表信息，一般在 Git 仓库目录中。 有时候也被称作“索引”，不过一般说法还是叫暂存区域。
-                            Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git 中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
-                            基本的 Git 工作流程如下：
-                            在工作目录中修改文件。
-                            暂存文件，将文件的快照放入暂存区域。
-                            提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。
-                            如果 Git 目录中保存着的特定版本文件，就属于已提交状态。 如果作了修改并已放入暂存区域，就属于已暂存状态。 如果自上次取出后，作了修改但还没有放到暂存区域，就是已修改状态
+                            工作目录是某个版本快照的内容。 这些从Git仓库中提取出来的文件，放在磁盘上供使用或修改。
+                            暂存区域是一个文件，保存了下次将提交的文件列表信息，有时候也被称作“索引”，不过一般说法还是叫暂存区域。
+                            Git 仓库目录是 Git 用来保存项目的元数据和对象数据库的地方。 这是 Git中最重要的部分，从其它计算机克隆仓库时，拷贝的就是这里的数据。
                         </aside>
                     </section>
                     <section>
@@ -190,12 +185,12 @@
                     </section>
                     <section>
                         <h2>一般开发流程</h2>
-                        <p class="fragment visible" data-fragment-index="0">创建仓库/从远程仓库复制</p>
-                        <p class="fragment visible" data-fragment-index="1">创建特性分支</p>
+                        <p class="fragment visible" data-fragment-index="0">创建仓库/从远程仓库克隆</p>
+                        <p class="fragment visible" data-fragment-index="1">创建并切换到特性分支</p>
                         <p class="fragment visible" data-fragment-index="2">创建/修改文件</p>
-                        <p class="fragment visible" data-fragment-index="3">工作区提交文件到暂存区</p>
-                        <p class="fragment visible" data-fragment-index="4">暂存区提交文件到本地仓库</p>
-                        <p class="fragment visible" data-fragment-index="5">切换到主分支</p>
+                        <p class="fragment visible" data-fragment-index="3">提交工作区文件到暂存区</p>
+                        <p class="fragment visible" data-fragment-index="4">提交暂存区文件到本地仓库</p>
+                        <p class="fragment visible" data-fragment-index="5">切换到主干分支</p>
                         <p class="fragment visible" data-fragment-index="6">合并特性分支到主干分支</p>
                         <p class="fragment visible" data-fragment-index="7">推送本地仓库到远程仓库</p>
                     </section>
@@ -248,7 +243,7 @@
                     </section>
                     <section>
                         <h2>git clone</h2>
-                        <p>克隆远程仓库到一个新的目录</p>
+                        <p>克隆远程仓库到本地目录</p>
                         <h3><a href="video/clone.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
@@ -273,26 +268,11 @@
                     </section>
                     <section>
                         <h2>git config</h2>
-                        <p>修改Git配置文件</p>
+                        <p>修改Git配置信息</p>
                         <h3><a href="video/config.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
-                        <h2>git fetch</h2>
-                        <p>拉取远程仓库到本地仓库</p>
-                        <h3><a href="video/fetch.ogv" target="_blank">Demo</a></h3>
-                    </section>
-                    <section>
-                        <h2>merge</h2>
-                        <p>合并分支</p>
-                        <h3><a href="video/merge.ogv" target="_blank">Demo</a></h3>
-                    </section>
-                    <section>
-                        <h2>git pull</h2>
-                        <p>拉取远程仓库到本地仓库并合并到本地分支(git fetch + git merge)</p>
-                        <h3><a href="/video/pull.ogv" target="_blank">Demo</a></h3>
-                    </section>
-                    <section>
-                        <h3>diff</h3>
+                        <h3>git diff</h3>
                         <p>显示不同提交，不同工作区域，不同分支之间的差别</p>
                         <h3>git add</h3>
                         <p>工作区提交到暂存区</p>
@@ -301,6 +281,21 @@
                         <h3>git push</h3>
                         <p>将本地仓库的内容推送到远程仓库</p>
                         <h3><a href="/video/acpd.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git fetch</h2>
+                        <p>拉取远程仓库到本地仓库</p>
+                        <h3><a href="video/fetch.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git merge</h2>
+                        <p>合并分支</p>
+                        <h3><a href="video/merge.ogv" target="_blank">Demo</a></h3>
+                    </section>
+                    <section>
+                        <h2>git pull</h2>
+                        <p>拉取远程仓库到本地仓库并合并到本地分支(git fetch + git merge)</p>
+                        <h3><a href="/video/pull.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
                         <h2>git rm</h2>
@@ -313,22 +308,22 @@
                         <h3><a href="video/stash.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
-                        <h2>branch</h2>
+                        <h2>git branch</h2>
                         <p>管理分支</p>
                         <h3><a href="video/branch.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
-                        <h2>checkout</h2>
+                        <h2>git checkout</h2>
                         <p>检出分支或撤销文件</p>
                         <h3><a href="video/checkout.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
-                        <h2>reset</h2>
+                        <h2>git reset</h2>
                         <p>重置HEAD到指定的状态</p>
                         <h3><a href="video/reset.ogv" target="_blank">Demo</a></h3>
                     </section>
                     <section>
-                        <h2>revert</h2>
+                        <h2>git revert</h2>
                         <p>撤销一些已经存在的提交</p>
                         <h3><a href="video/revert.ogv" target="_blank">Demo</a></h3>
                     </section>
